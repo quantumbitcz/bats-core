@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: |
-          curl https://github.com/mvdan/sh/releases/download/v3.5.1/shfmt_v3.5.1_linux_amd64 -o shfmt
+          curl https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_linux_amd64 -o shfmt
           chmod a+x shfmt
       - run: ./shfmt --diff .
 
@@ -60,7 +60,7 @@ jobs:
       - uses: actions/checkout@v6
       - name: Install rush
         run: |
-          curl -sSfL https://github.com/shenwei356/rush/releases/download/v0.5.0/rush_linux_amd64.tar.gz | sudo tar xzf - -C /usr/local/bin
+          curl -sSfL https://github.com/shenwei356/rush/releases/download/v0.9.0/rush_linux_amd64.tar.gz | sudo tar xzf - -C /usr/local/bin
         if: contains(matrix.env_vars, 'rush')
       - name: Run test on OS ${{ matrix.os }}
         shell: 'script -q -e -c "bash {0}"' # work around tty issues
@@ -138,7 +138,7 @@ jobs:
         run: brew install expect
       - name: Install rush
         run: |
-          curl -sSfL https://github.com/shenwei356/rush/releases/download/v0.5.0/rush_darwin_amd64.tar.gz | sudo tar xzf - -C /usr/local/bin
+          curl -sSfL https://github.com/shenwei356/rush/releases/download/v0.9.0/rush_darwin_amd64.tar.gz | sudo tar xzf - -C /usr/local/bin
         if: contains(matrix.env_vars, 'rush')
 
       - name: Check failing tests fail suite,
@@ -324,7 +324,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: |
-          wget https://github.com/SimonKagstrom/kcov/releases/download/v42/kcov-amd64.tar.gz
+          wget https://github.com/SimonKagstrom/kcov/releases/download/v43/kcov-amd64.tar.gz
           tar -xf kcov-amd64.tar.gz
       - run: |
           ./usr/local/bin/kcov --exclude-path=/tmp $PWD/coverage ./bin/bats --filter-tags '!no-kcov' test/
